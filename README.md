@@ -12,6 +12,8 @@ robot-test/
 │   └── CalculatorLibrary.py   # Robot Framework keyword library
 ├── requirements.txt           # Python dependencies
 ├── clean_reports.sh           # Script to clean up test reports
+├── Jenkinsfile                # Jenkins pipeline configuration
+├── JENKINS_SETUP.md           # Detailed Jenkins setup guide
 └── README.md                  # This file
 ```
 
@@ -94,3 +96,43 @@ Robot Framework overwrites reports when running tests to the same location. Howe
 rm -rf results/
 rm -f output.xml log.html report.html junit-output.xml
 ```
+
+## Jenkins CI/CD Integration
+
+This project includes a Jenkins pipeline for automated testing. The pipeline:
+- ✅ Automatically checks out code from Git
+- ✅ Installs dependencies (Robot Framework)
+- ✅ Runs all test cases
+- ✅ Publishes Robot Framework test results with interactive reports
+- ✅ Generates JUnit XML output for additional reporting
+- ✅ Archives test artifacts (logs, reports)
+
+### Quick Setup
+
+1. **Ensure Jenkins has the Robot Framework Plugin installed**
+   - Navigate to: Manage Jenkins → Plugins
+   - Install: "Robot Framework Plugin"
+
+2. **Create a Pipeline Job**
+   - Click "New Item" → Enter name → Select "Pipeline"
+   - Under Pipeline section:
+     - Definition: "Pipeline script from SCM"
+     - SCM: "Git"
+     - Repository URL: `https://github.com/grvsoni/robot-test.git`
+     - Script Path: `Jenkinsfile`
+
+3. **Run the Pipeline**
+   - Click "Build Now"
+   - View results in "Robot Framework Results"
+
+### Detailed Instructions
+
+For complete Jenkins setup instructions, troubleshooting, and advanced configuration, see **[JENKINS_SETUP.md](JENKINS_SETUP.md)**.
+
+### Pipeline Stages
+
+1. **Checkout** - Clone repository
+2. **Setup Python Environment** - Verify Python/pip
+3. **Install Dependencies** - Install Robot Framework
+4. **Run Tests** - Execute all test cases
+5. **Publish Results** - Generate reports and publish to Jenkins

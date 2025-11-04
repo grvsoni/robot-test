@@ -32,9 +32,9 @@ pipeline {
             steps {
                 echo 'Running Robot Framework tests...'
                 sh '''
-                    robot --outputdir results \
-                          --xunit results/junit-output.xml \
-                          tests/calculator_tests.robot
+                    python3 -m robot --outputdir results \
+                                     --xunit results/junit-output.xml \
+                                     tests/calculator_tests.robot
                 '''
             }
         }

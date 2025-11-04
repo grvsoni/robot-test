@@ -50,7 +50,6 @@ pipeline {
                 logFileName: 'log.html',
                 passThreshold: 100.0,
                 unstableThreshold: 75.0,
-                onlyCritical: false,
                 otherFiles: '*.png,*.jpg'
             )
             

@@ -33,7 +33,7 @@ pipeline {
                 echo 'Running Robot Framework tests...'
                 sh '''
                     python3 -m robot --outputdir results \
-                                     --xunit results/junit-output.xml \
+                                     --xunit junit-output.xml \
                                      tests/calculator_tests.robot
                 '''
             }
